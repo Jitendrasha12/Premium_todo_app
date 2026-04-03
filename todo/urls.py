@@ -1,14 +1,11 @@
-from django.urls import path, include
-from rest_framework.routers import DefaultRouter
-from .api_views import TaskViewSet
+from django.urls import path
+from .api_views import TaskListCreateAPIView, TaskDetailAPIView
 from .views import home_view
 
-router = DefaultRouter()
-router.register(r'tasks', TaskViewSet, basename='task')
-
 urlpatterns = [
-    # API endpoints
-    path('api/', include(router.urls)),
+    # API endpoints (Raw SQL Implementation)
+    path('api/tasks/', TaskListCreateAPIView.as_view(), name='task-list'),
+    path('api/tasks/<int:pk>/', TaskDetailAPIView.as_view(), name='task-detail'),
     
     # Template views
     path('', home_view, name='home'),
