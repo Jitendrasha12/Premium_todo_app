@@ -1,108 +1,97 @@
-# 🏅 Premium To-Do List Application (v1.1)
+# Django To-Do List Application
 
-A professional, high-performance To-Do List manager built with **Django REST Framework** (Backend) and **Vanilla JS/CSS3** (Frontend).
+A robust, high-performance To-Do List application built using **Django**, **Django REST Framework**, and **Vanilla JavaScript**. This project demonstrates a full-stack CRUD implementation with a modern, responsive user interface.
+
+## Features
+- **RESTful API**: Full CRUD operations for task management.
+- **Modern UI**: Clean design with responsive layouts for both desktop and mobile.
+- **Dynamic UX**: Seamless task interaction using the Fetch API without page reloads.
+- **Logging**: Integrated logging for request monitoring and error tracking.
+- **Testing**: Automated API testing using `pytest`.
 
 ---
 
-## 🎨 Design Philosophy
-This application follows **Premium Aesthetics** by incorporating:
-- **Glassmorphism**: Semi-transparent UI elements with soft backdrop blurs.
-- **Dynamic Feedback**: Real-time task sorting, status badges, and sleek micro-animations.
-- **Responsive Layout**: Optimized for both desktop and mobile viewing with modern typography.
-
----
-
-## 🚀 Environment Setup & Running
+## Getting Started
 
 ### 1. Prerequisites
 - Python 3.10+
-- `pip` (Python package manager)
+- `pip`
 
-### 2. Quick Installation
+### 2. Setup Environment
 ```bash
-# 1. Clone the repository (if applicable)
-# git clone <your-repo-url>
-# cd crudOperation
+# Create a virtual environment
+python -m venv venv
 
-# 2. Setup Virtual Environment
-python3 -m venv venv
+# Activate on Windows
+.\venv\Scripts\activate
+
+# Activate on Unix/macOS
 source venv/bin/activate
 
-# 3. Install Dependencies
+# Install dependencies
 pip install -r requirements.txt
 ```
 
-### 3. Database Initialization
+### 3. Database & Static Files
 ```bash
-python manage.py makemigrations
+# Apply migrations
 python manage.py migrate
 ```
 
-### 4. Lauch Server
+### 4. Running the Application
 ```bash
-python manage.py runserver 0.0.0.0:8000
+python manage.py runserver
 ```
-Visit the application at: **[http://localhost:8000/](http://localhost:8000/)**
+Visit the app at: `http://127.0.0.1:8000/`
 
 ---
 
-## 📡 API Documentation
+## API Documentation
 
-### **Authentication**
-As per project requirements for open access, **No Authentication** is enforced for development. For production: **JWT (JSON Web Tokens)** or **Session-based Authentication** via Django Auth is proposed.
-
-### **Base Endpoint**
+### **Base URL**
 `/api/tasks/`
 
-### **Supported Endpoints**
+### **Endpoints**
 
-| Method | Endpoint | Description | Expected Payload (JSON) |
-|--------|----------|-------------|-------------------------|
-| `GET` | `/api/tasks/` | Fetch all tasks | N/A |
-| `POST` | `/api/tasks/` | Create a new task | `{ "title": "...", "due_date": "ISO-8601" }` |
-| `GET` | `/api/tasks/{id}/` | Get task details | N/A |
-| `PUT` | `/api/tasks/{id}/` | Full update (title, desc, etc.) | `{ "title": "New Title", ... }` |
-| `PATCH` | `/api/tasks/{id}/` | Partial update (e.g., status) | `{ "status": "Completed" }` |
-| `DELETE` | `/api/tasks/{id}/` | Delete a task | N/A |
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| `GET` | `/api/tasks/` | List all tasks |
+| `POST` | `/api/tasks/` | Create a new task |
+| `GET` | `/api/tasks/{id}/` | Get task details |
+| `PATCH` | `/api/tasks/{id}/` | Update task status or details |
+| `DELETE` | `/api/tasks/{id}/` | Delete a task |
 
-### **Request/Response Formats**
-Standard **JSON** is used for all communications.
-
-**Example Task Object:**
+### **Request Body (JSON)**
+Example for creating/updating a task:
 ```json
 {
-  "id": 1,
-  "title": "Build premium UI",
-  "description": "Utilize glassmorphism and modern CSS",
-  "due_date": "2026-05-01T10:00:00Z",
-  "status": "Pending",
-  "created_at": "2026-04-03T14:00:00Z",
-  "updated_at": "2026-04-03T14:00:00Z"
+  "title": "Build a great app",
+  "description": "Complete the DRF integration",
+  "due_date": "2023-10-31T23:59:00Z",
+  "status": "Pending"
 }
 ```
 
 ---
 
-## 🧪 Testing & Quality Assurance
+## Testing
 
-### **Automated Tests**
-This project uses **Pytest** for backend API validation.
-- **Coverage**: 100% of core CRUD operations.
-- **How to execute**:
+Run the automated test suite with:
 ```bash
 pytest
 ```
 
-### **Deployment Considerations**
-- **Production Server**: Use Gunicorn or uWSGI for production rather than the built-in development server.
-- **Environment Variables**: Move `SECRET_KEY` and database credentials to a `.env` file.
-- **CORS**: Currently configured for permissive access (`CORS_ALLOW_ALL_ORIGINS = True`). Restrict to specific domains in production.
-- **Static Files**: Use `python manage.py collectstatic` for production serving.
+---
+
+## Tech Stack
+- **Backend**: Django & Django REST Framework
+- **Frontend**: HTML5, CSS3, JavaScript (ES6+)
+- **Database**: SQLite3
+- **Testing**: pytest-django
 
 ---
 
-## 👨‍💻 Submission Guidelines
-
-1. **Repository**: Ensure this directory is initialized as a Git repository.
-2. **Access**: Please grant repository access to **`hr@pelocal.com`**.
-3. **Environment**: This codebase includes a `requirements.txt` and a default `sqlite3` database setup for immediate evaluation.
+## Submission Notes
+- **Repository**: [Premium_todo_app](https://github.com/Jitendrasha12/Premium_todo_app)
+- **Reviewer Access**: Access has been granted to `hr@pelocal.com`.
+- **Configuration**: The project includes a default `db.sqlite3` for ease of review.
