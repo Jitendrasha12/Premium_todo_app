@@ -1,0 +1,85 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Premium To-Do App</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>My Daily Tasks</h1>
+            <p>Elevate your productivity with a premium task manager.</p>
+        </header>
+
+        <!-- Task Creation Card -->
+        <div class="card">
+            <form id="task-form">
+                {% csrf_token %}
+                <div class="form-group">
+                    <label for="title">Task Title</label>
+                    <input type="text" id="title" name="title" placeholder="What needs to be done?" required>
+                </div>
+                <div class="form-group">
+                    <label for="description">Description (Optional)</label>
+                    <textarea id="description" name="description" rows="3" placeholder="Additional details..."></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="due_date">Due Date</label>
+                    <input type="datetime-local" id="due_date" name="due_date" required>
+                </div>
+                <button type="submit" class="btn">Add Task</button>
+            </form>
+        </div>
+
+        <!-- Edit Task Modal -->
+        <div id="edit-modal" class="modal" style="display: none;">
+            <div class="modal-content card">
+                <div class="modal-header">
+                    <h2>Edit Task</h2>
+                    <span class="close-btn">&times;</span>
+                </div>
+                <form id="edit-form">
+                    {% csrf_token %}
+                    <input type="hidden" id="edit-task-id">
+                    <div class="form-group">
+                        <label for="edit-title">Task Title</label>
+                        <input type="text" id="edit-title" name="title" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="edit-description">Description</label>
+                        <textarea id="edit-description" name="description" rows="3"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="edit-due_date">Due Date</label>
+                        <input type="datetime-local" id="edit-due_date" name="due_date" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="edit-status">Status</label>
+                        <select id="edit-status" name="status">
+                            <option value="Pending">Pending</option>
+                            <option value="Completed">Completed</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="btn">Update Task</button>
+                </form>
+            </div>
+        </div>
+
+        <!-- Task List Section -->
+        <div id="empty-state" class="empty-state" style="display: none;">
+            <p>No tasks yet. Start by adding one above!</p>
+        </div>
+        
+        <ul id="task-list" class="task-list">
+            <!-- Tasks will be dynamically loaded here by script -->
+        </ul>
+    </div>
+
+    <!-- Scripts -->
+    <script src="{% static 'js/main.js' %}"></script>
+</body>
+</html>
